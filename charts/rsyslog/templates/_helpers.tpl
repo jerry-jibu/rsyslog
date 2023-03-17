@@ -65,3 +65,15 @@ Return the proper image name
     {{- printf "%s%s%s"  $repositoryName $separator $termination -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Return the proper Docker Image Registry Secret Names
+*/}}
+{{- define "rsyslog.imagePullSecrets" -}}
+{{- if (not (empty .Values.image.pullSecrets)) }}
+imagePullSecrets:
+  {{- range .Values.image.pullSecrets }}
+  - name: {{ . }}
+  {{- end }}
+{{- end }}
+{{- end -}}

@@ -18,6 +18,7 @@ spec:
       labels:
         {{- include "rsyslog.selectorLabels" . | nindent 8 }}
     spec:
+      {{- include "rsyslog.imagePullSecrets" . | nindent 6 }}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ include "rsyslog.image" . }}
