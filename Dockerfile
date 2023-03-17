@@ -1,6 +1,6 @@
 FROM alpine:3.12
 
-RUN apk add --no-cache rsyslog logrotate bash
+RUN apk add --no-cache rsyslog logrotate bash tini
 
 EXPOSE 514/tcp
 EXPOSE 514/udp
@@ -13,6 +13,6 @@ ENV ROTATE_SCHEDULE='0 * * * *' \
 COPY entrypoint.sh /
 COPY etc/ /etc/
 
-RUN echo "cd /var/log; echo \"Current Logs:\"; ls -lth" > /root/.bashrc
+RUN echo "cd /var/log; echo \"Current Logs:\"; ls -lhrt" > /root/.bashrc
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]
