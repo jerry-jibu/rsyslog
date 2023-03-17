@@ -55,8 +55,13 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: var
+          {{- if .Values.pvc.enabled }}
           persistentVolumeClaim:
-            claimName: syslogs
+            claimName: syslog
+          {{- else }}
+          emptyDir:
+            sizeLimit: {{ .Values.pvc.size }}
+          {{- end }}
         - name: config
           configMap:
             name: syslog

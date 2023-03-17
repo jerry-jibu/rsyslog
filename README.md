@@ -52,7 +52,7 @@ spec:
       volumes:
         - name: var
           persistentVolumeClaim:
-            claimName: syslogs
+            claimName: syslog
         - name: config
           configMap:
             name: my-syslog
@@ -75,7 +75,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: syslogs
+  name: syslog
 spec:
   accessModes:
   - ReadWriteOnce
@@ -93,8 +93,8 @@ metadata:
 data:
   my-syslog.conf: |-
     *.* -/var/log/my.log
-    
-    # we only expect local traffic, so no point in DNS lookup of the FDQNs    
+
+    # we only expect local traffic, so no point in DNS lookup of the FDQNs
     global(net.enableDNS="off")
   my-logrotate.conf: |-
     /var/log/my.log {
