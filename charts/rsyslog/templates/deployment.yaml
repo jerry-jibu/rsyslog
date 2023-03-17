@@ -21,9 +21,9 @@ spec:
       {{- include "rsyslog.imagePullSecrets" . | nindent 6 }}
       initContainers:
         - name: fix-permissions
-          image: {{ include "rsyslog.image" . }}
+          image: busybox
           command:
-            - /bin/bash
+            - sh
             - -ec
             - |
               chmod 0755 /var/log
