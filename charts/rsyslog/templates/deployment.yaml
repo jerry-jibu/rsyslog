@@ -64,6 +64,10 @@ spec:
               subPath: my-logrotate.conf
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+
+        {{- if .Values.sidecars }}
+        {{- toYaml .Values.sidecars | nindent 8 }}
+        {{- end }}
       volumes:
         - name: var
           {{- if .Values.pvc.enabled }}
