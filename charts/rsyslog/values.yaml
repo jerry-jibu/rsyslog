@@ -4,8 +4,8 @@
 replicaCount: 1
 
 image:
-  registry: null
-  repository: kodgruvan/rsyslog-server
+  registry: registry.cn-shanghai.aliyuncs.com
+  repository: jibutech/rsyslog-server
   pullPolicy: IfNotPresent
   pullSecrets: []
   tag: ""

@@ -1,8 +1,8 @@
 .PHONY: image push test
 
 push: image
-	docker push kodgruvan/rsyslog-server:latest
+	docker push registry.cn-shanghai.aliyuncs.com/jibutech/rsyslog-server:latest
 
 image:
-	docker build . -t kodgruvan/rsyslog-server:latest
+	docker build . -t registry.cn-shanghai.aliyuncs.com/jibutech/rsyslog-server:latest
 
