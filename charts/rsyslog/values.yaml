@@ -8,7 +8,7 @@ image:
   repository: jibutech/rsyslog-server
   pullPolicy: IfNotPresent
   pullSecrets: []
-  tag: ""
+  tag: "latest"
 
 pvc:
   enabled: false

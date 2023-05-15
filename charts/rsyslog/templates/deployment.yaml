@@ -21,7 +21,7 @@ spec:
       {{- include "rsyslog.imagePullSecrets" . | nindent 6 }}
       initContainers:
         - name: fix-permissions
-          image: registry.cn-shanghai.aliyuncs.com/jibutech/busybox:latest
+          image:  "{{ .Values.image.registry }}/ys1000/busybox:latest"
           command:
             - sh
             - -ec
@@ -32,7 +32,7 @@ spec:
               mountPath: /var/log
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ include "rsyslog.image" . }}
+          image: "{{ .Values.image.registry }}/{{.Values.image.repository}}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: ROTATE_SCHEDULE
