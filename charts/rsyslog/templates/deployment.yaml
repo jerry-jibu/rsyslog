@@ -21,7 +21,7 @@ spec:
       {{- include "rsyslog.imagePullSecrets" . | nindent 6 }}
       initContainers:
         - name: fix-permissions
-          image:  "{{ .Values.image.registry }}/ys1000/busybox:latest"
+          image:  "{{ .Values.image.registry }}/jibutech/busybox:latest"
           command:
             - sh
             - -ec

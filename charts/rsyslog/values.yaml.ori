@@ -4,7 +4,7 @@
 replicaCount: 1
 
 image:
-  registry: docker.io
+  registry: registry.cn-shanghai.aliyuncs.com
   repository: jibutech/rsyslog-server
   pullPolicy: IfNotPresent
   pullSecrets: []
@@ -48,15 +48,9 @@ dumpLogsToStdout: True
 cronLogLevel: 8
 
 syslogconf: |-
-  # Forward everything
-  *.*  action(type="omfwd"
-         protocol="tcp" target="promtail-syslog.loki.svc.cluster.local" port="1514"
-         Template="RSYSLOG_SyslogProtocol23Format"
-         TCP_Framing="octet-counted"
-         action.resumeRetryCount="-1"
-         queue.type="linkedlist" queue.size="50000")
-  # local test
   *.* -/var/log/my.log
+  # we only expect local traffic, so no point in DNS lookup of the FDQNs
+  global(net.enableDNS="off")
 
 logrotateconf: |-
   /var/log/my.log {
