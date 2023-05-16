@@ -3,10 +3,10 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/jibutech/syslog-ng
+  repository: docker.io/jibutech/syslog-ng-server
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "3.27.1"
+  tag: "latest"
 
 # By default, the network() driver binds to 0.0.0.0, meaning that it listens 
 # on every available IPV4 interface on the TCP/601 port.
@@ -30,10 +30,10 @@ config: |
   };
 
   log {
-  	source {
-  		network();
-  	};
-        destination(d_loki);
+    source {
+      network();
+    };
+    destination(d_loki);
   };
 
 storage:
